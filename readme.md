@@ -1,4 +1,4 @@
-![Minecraft GIF](https://media.tenor.com/do1MMrPly-wAAAAC/minecraft-grass-block.gif)
+
 
 # ⚡ Express.js + Prisma + MySQL API
 
