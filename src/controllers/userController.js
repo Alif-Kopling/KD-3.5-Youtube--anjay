@@ -1,17 +1,16 @@
 const { PrismaClient } = require('@prisma/client');
 const { PrismaMariaDb } = require('@prisma/adapter-mariadb');
-const mariadb = require('mariadb');
 const { body, validationResult } = require('express-validator');
 
 const url = new URL(process.env.DATABASE_URL);
-const connection = mariadb.createPool({
+const adapter = new PrismaMariaDb({
   host: url.hostname,
-  port: Number(url.port),
+  port: Number(url.port || 3306),
   user: url.username,
   password: url.password,
   database: url.pathname.slice(1),
+  allowPublicKeyRetrieval: true,
 });
-const adapter = new PrismaMariaDb(connection);
 const prisma = new PrismaClient({ adapter });
 
 const index = async (req, res, next) => {
